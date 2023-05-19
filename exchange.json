@@ -1,5 +1,6 @@
 [{
-	"name": "USD/JPY",
-	"symbol": "JPY=X",
-	"unit": "円/ドル"
+  "name": "USD/JPY",
+  "symbol": "JPY=X",
+  "unit": "円/ドル",
+  "format":"USD/JPX Now:{0}円/ドル(前日比:{1})\n"
 }]

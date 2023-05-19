@@ -7,6 +7,7 @@ interface symbolData {
   name: string;
   symbol: string;
   unit: string;
+  format: string;
 }
 
 interface session {
@@ -54,9 +55,9 @@ const run = async () => {
       const todayColose: number = results[1].close
       const diff: number = todayColose - yesterdayColose
       const ratio: number = Math.round(diff / yesterdayColose * 100 * 100) / 100
-      text = text + symbol.name + ":終値=" + Math.round(todayColose * 1000) / 1000 + symbol.unit + "(前日比：" + (ratio > 0 ? "+" + ratio : ratio) + "%)"
+      text = symbol.format.replace("{0}", (Math.round(todayColose * 1000) / 1000).toString()).replace("{1}", (ratio > 0 ? "+" + ratio : ratio).toString())
+      console.log(text)
     })
-
     const response: any = await axios.post("https://bsky.social/xrpc/com.atproto.server.createSession", {
       identifier: process.env.IDENTIFIER,
       password: process.env.PASSWORD
