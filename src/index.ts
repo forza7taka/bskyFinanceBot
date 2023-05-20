@@ -19,9 +19,9 @@ interface session {
 
 dotenv.config()
 
-const getYesterday = async () => {
+const getBefore7day = async () => {
   const yesterday = new Date()
-  yesterday.setDate(yesterday.getDate() - 1)
+  yesterday.setDate(yesterday.getDate() - 7)
   return getDate(yesterday)
 }
 
@@ -44,13 +44,14 @@ const run = async () => {
 
     const json = await fs.promises.readFile(process.argv[2], 'utf8');
     const symbols: symbolData[] = JSON.parse(json);
-    const yesterday: string = await getYesterday()
-    const queryOptions = { period1: yesterday, /* ... */ };
+    const before7day: string = await getBefore7day()
+    const queryOptions = { period1: before7day, /* ... */ };
 
     let text: string = ""
     symbols.forEach(async (symbol) => {
       console.log(symbol)
       const results = await yahooFinance.historical(symbol.symbol, queryOptions)
+      console.log(results)
       const yesterdayColose: number = results[0].close
       const todayColose: number = results[1].close
       const diff: number = todayColose - yesterdayColose
