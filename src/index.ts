@@ -92,7 +92,7 @@ const run = async () => {
       const symbols: Currency[] = JSON.parse(json);
 
     }
-    //    post(texts)
+    post(texts)
     console.log(texts)
   } catch (error) {
     console.error(error);
