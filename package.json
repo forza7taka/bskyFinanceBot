@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "ts-node src/index.ts",
-    "dev1": "ts-node src/index.ts exchange.json",
-    "dev2": "ts-node src/index.ts index.json",
+    "dev1": "ts-node src/index.ts exchange exchange.json",
+    "dev2": "ts-node src/index.ts index index.json",
     "dev:watch": "ts-node-dev --respawn src/index.ts",
     "clean": "rimraf --glob ./dist/*",
     "tsc": "tsc",
@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "alphavantage": "^2.4.1",
     "axios": "^1.4.0",
     "dotenv": "^16.0.3",
     "ts-node": "^10.9.1",

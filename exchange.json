@@ -1,6 +1,14 @@
 [{
   "name": "USD/JPY",
-  "symbol": "JPY=X",
+  "fromCode": "USD",
+  "toCode": "JPY",
   "unit": "円/ドル",
-  "format":"USD/JPX Now:{0}円/ドル(前日比:{1})\n"
+  "format":"USD/JPX Now:{0}円/ドル\n"
+},
+{
+  "name": "EUR/JPY",
+  "fromCode": "EUR",
+  "toCode": "JPY",
+  "unit": "円/ユード",
+  "format":"EUR/JPX Now:{0}円/ユーロ\n"
 }]
