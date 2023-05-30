@@ -51,18 +51,19 @@ const fetchYahooFinance = async (symbols: Stock[]) => {
   const queryOptions = { period1: before7day, /* ... */ };
 
   let texts: string[] = [];
-  symbols.forEach(async (symbol) => {
-    console.log(symbol)
-    const results = await yahooFinance.historical(symbol.symbol, queryOptions)
+  symbols.forEach(async (symbols: Stock) => {
+    console.log(symbols)
+    const results = await yahooFinance.historical(symbols.symbol, queryOptions)
     console.log(results)
-    const yesterdayColose: number = results[0].close
-    const todayColose: number = results[1].close
+    const yesterdayColose: number = results[results.length - 2].close
+    const todayColose: number = results[results.length - 1].close
     const diff: number = todayColose - yesterdayColose
     const ratio: number = Math.round(diff / yesterdayColose * 100 * 100) / 100
-    const text: string = symbol.format.replace("{0}", (Math.round(todayColose * 1000) / 1000).toString()).replace("{1}", (ratio > 0 ? "+" + ratio : ratio).toString())
+    const text: string = symbols.format.replace("{0}", (Math.round(todayColose * 1000) / 1000).toString()).replace("{1}", (ratio > 0 ? "+" + ratio : ratio).toString())
     console.log(text)
     texts.push(text)
   })
+  return texts
 }
 
 const fetchAlphaVantageExchange = async (symbols: Currency[]) => {
@@ -75,7 +76,6 @@ const fetchAlphaVantageExchange = async (symbols: Currency[]) => {
     const text = symbol.format.replace('{0}', (Math.round(rate * 1000) / 1000).toString());
     texts.push(text);
   }
-
   return texts;
 };
 
@@ -84,13 +84,13 @@ const run = async () => {
     let texts: string[] = [];
 
     if ('exchange' === process.argv[2]) {
-      const json = fs.readFileSync(process.argv[3], 'utf8');
-      const symbols: Currency[] = JSON.parse(json);
-      texts = await fetchAlphaVantageExchange(symbols);
+      const json = fs.readFileSync(process.argv[3], 'utf8')
+      const symbols: Currency[] = JSON.parse(json)
+      texts = await fetchAlphaVantageExchange(symbols)
     } else {
-      const json = fs.readFileSync(process.argv[3], 'utf8');
-      const symbols: Currency[] = JSON.parse(json);
-
+      const json = fs.readFileSync(process.argv[3], 'utf8')
+      const symbols: Stock[] = JSON.parse(json)
+      texts = await fetchYahooFinance(symbols)
     }
     post(texts)
     console.log(texts)
