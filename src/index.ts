@@ -47,22 +47,19 @@ const getDate = (date: Date) => {
 };
 
 const fetchYahooFinance = async (symbols: Stock[]) => {
-  const before7day: string = await getBefore7day()
+  const before7day: string = getBefore7day()
   const queryOptions = { period1: before7day, /* ... */ };
 
   let texts: string[] = [];
-  symbols.forEach(async (symbols: Stock) => {
-    console.log(symbols)
-    const results = await yahooFinance.historical(symbols.symbol, queryOptions)
-    console.log(results)
+  for (const symbol of symbols) {
+    const results = await yahooFinance.historical(symbol.symbol, queryOptions)
     const yesterdayColose: number = results[results.length - 2].close
     const todayColose: number = results[results.length - 1].close
     const diff: number = todayColose - yesterdayColose
     const ratio: number = Math.round(diff / yesterdayColose * 100 * 100) / 100
-    const text: string = symbols.format.replace("{0}", (Math.round(todayColose * 1000) / 1000).toString()).replace("{1}", (ratio > 0 ? "+" + ratio : ratio).toString())
-    console.log(text)
+    const text: string = symbol.format.replace("{0}", (Math.round(todayColose * 1000) / 1000).toString()).replace("{1}", (ratio > 0 ? "+" + ratio : ratio).toString())
     texts.push(text)
-  })
+  }
   return texts
 }
 

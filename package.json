@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "ts-node src/index.ts",
-    "dev1": "ts-node src/index.ts exchange exchange.json",
-    "dev2": "ts-node src/index.ts index index.json",
+    "exchange": "ts-node src/index.ts exchange exchange.json",
+    "index": "ts-node src/index.ts index index.json",
     "dev:watch": "ts-node-dev --respawn src/index.ts",
     "clean": "rimraf --glob ./dist/*",
     "tsc": "tsc",
