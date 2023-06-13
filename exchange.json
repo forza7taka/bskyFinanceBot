@@ -9,6 +9,6 @@
   "name": "EUR/JPY",
   "fromCode": "EUR",
   "toCode": "JPY",
-  "unit": "円/ユード",
+  "unit": "円/ユーロ",
   "format":"EUR/JPX Now:{0}円/ユーロ\n"
 }]
