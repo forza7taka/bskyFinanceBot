@@ -2,23 +2,23 @@
 	"name": "日経225",
 	"symbol": "^N225",
 	"unit": "円",
-	"format":"日経225 終値:{0}円(前日比:{1})\n"
+	"format":"日経225 終値:{0}円(前日比:{1}%)\n"
 },
 {
 	"name": "S&P 500",
 	"symbol": "^GSPC",
 	"unit": "",
-	"format":"S&P 500: {0}(前日比:{1})\n"
+	"format":"S&P 500: {0}(前日比:{1}%)\n"
 },
 {
 	"name": "NASDAQ Composite",
 	"symbol": "^IXIC",
 	"unit": "円",
-	"format":"NASDAQ Composite :{0}(前日比:{1})\n"
+	"format":"NASDAQ Composite :{0}(前日比:{1}%)\n"
 },
 {
 	"name": "VIX",
 	"symbol": "^VIX",
 	"unit": "円",
-	"format":"VIX :{0}(前日比:{1})\n"
+	"format":"VIX :{0}(前日比:{1}%)\n"
 }]

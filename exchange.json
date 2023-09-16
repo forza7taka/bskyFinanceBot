@@ -3,12 +3,12 @@
   "fromCode": "USD",
   "toCode": "JPY",
   "unit": "円/ドル",
-  "format":"USD/JPX Now:{0}円/ドル\n"
+  "format":"USD/JPX {0}円/ドル\n"
 },
 {
   "name": "EUR/JPY",
   "fromCode": "EUR",
   "toCode": "JPY",
   "unit": "円/ユーロ",
-  "format":"EUR/JPX Now:{0}円/ユーロ\n"
+  "format":"EUR/JPX {0}円/ユーロ\n"
 }]
